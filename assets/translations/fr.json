@@ -1,0 +1,37 @@
+{
+  "app_name": "Portfolio",
+
+  "website": "site internet",
+
+  "send": "Envoyer",
+  "sending": "Envoi en cours…",
+  "sent": "Envoyé",
+  "failed": "Echec",
+
+
+  "about_me": "à propos de moi",
+  "projects": "projets",
+  "contact": "contact",
+  "view_details": "Voir détails",
+
+  "favorite_techs": "Technologies préférées",
+  "published": "publiée",
+  "library": "librairie",
+
+  "name": "Nom",
+  "enter_name": "Entrez votre nom",
+  "email": "Email",
+  "enter_email": "Entrez votre email",
+  "invalid_email": "Email invalide",
+  "message": "Message",
+  "enter_message": "Entrez votre message",
+  "required": "Ce champ est requis",
+
+  "zappr_description": "Zappr est un réseau social disponible sur Android et iOS, que j'ai cofondé avec un ami et développé seul.\n\nZappr était initialement une application Android pure écrite en Kotlin (et un peu de Java), mais plus tard, je l'ai reprogrammée à partir de zéro pour en faire ce qu'elle est maintenant : une application Flutter. Elle utilise Firebase pour l'authentification, les notifications et les liens profonds.\n\nJ'ai choisi Python/Django pour le backend, car j'avais déjà des connaissances dans ce domaine et je savais qu'il pouvait alimenter une API. Au lieu d'utiliser Celery pour gérer mes travailleurs, j'ai choisi DjangoQ pour une intégration facile avec Django. L'application est déployée avec uWSGI derrière un proxy Nginx dans un environnement Kubernetes. Le chat intégré est alimenté par Django Channels (websockets), déployé avec Daphne.",
+  "chat_ui_kit_description": "Chat Ui Kit est une bibliothèque Flutter publiée que j'ai écrite, parce qu'à l'époque aucune solution appropriée n'existait. Le seul package disponible manquait de fonctionnalités de chat de base telles que le support des groupes, les conversations de liste, les événements de frappe et plus encore...\n\nComme j'avais besoin de ces fonctionnalités dans Zappr, j'ai décidé d'écrire cette bibliothèque qui fournit un ensemble complet d'outils pour développer un chat Flutter.",
+  "portfolio_description": "Il n'y a actuellement pas de backend pour ce portfolio mais je pourrais ajouter une fonctionnalité qui en nécessiterait un dans le futur !\n\nEn attendant, vous pouvez consulter le code si vous êtes curieux de voir quelques animations \uD83D\uDE0A.",
+
+  "about_me_short": "Je suis Jonas, un développeur de logiciels mobiles full-stack.",
+  "about_me_text": "      Je suis passionné par ce que je fais, très curieux et surtout tenace : je n'ai jamais renoncé à résoudre un problème.\n\n      En dehors du bureau, vous me trouverez peut-être en train de faire du pain dans ma cuisine ou de jouer à des jeux de société. J'aime aussi entendre parler de la passion des autres, alors si vous voulez partager ou m'engager, envoyez-moi un message !"
+
+}

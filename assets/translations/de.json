@@ -1,0 +1,37 @@
+{
+  "app_name": "Portfolio",
+
+  "website": "website",
+
+  "send": "Senden",
+  "sending": "Sendevorgang läuft…",
+  "sent": "Gesendet",
+  "failed": "Gescheitert",
+
+  "about_me": "über mich",
+  "projects": "Projekte",
+  "contact": "Kontakt",
+  "view_details": "Details anzeigen",
+
+  "favorite_techs": "Lieblingstechnologien",
+  "published": "veröffentlicht",
+  "library": "Library",
+
+  "name": "Name",
+  "enter_name": "Ihren Namen eingeben",
+  "email": "E-Mail",
+  "enter_email": "Ihre E-Mail eingeben",
+  "invalid_email": "Ungültige E-Mail",
+  "message": "Nachricht",
+  "enter_message": "Ihre Nachricht eingeben",
+  "required": "Dieses Feld ist erforderlich",
+
+  "zappr_description": "Zappr ist ein auf Android und iOS verfügbares soziales Netzwerk, das ich zusammen mit einem Freund gegründet und allein entwickelt habe.\n\nZappr war zunächst eine reine Android-App, die in Kotlin (und etwas Java) geschrieben war, aber später habe ich sie von Grund auf neu programmiert und zu dem gemacht, was sie jetzt ist: eine Flutter-App. Sie nutzt Firebase für Authentifizierung, Benachrichtigungen und Deep Links.\n\nFür das Backend habe ich Python/Django gewählt, weil ich mich damit auskannte und wusste, dass man damit eine Api betreiben kann. Anstatt Celery zur Verwaltung meiner Worker zu verwenden, habe ich mich für DjangoQ entschieden, um eine einfache Integration mit Django zu ermöglichen. Die App wird mit uWSGI hinter einem Nginx-Proxy in einer Kubernetes-Umgebung bereitgestellt. Der integrierte Chat wird über Django Channels (Websockets) betrieben, die mit Daphne bereitgestellt werden.",
+  "chat_ui_kit_description": "Chat Ui Kit ist eine veröffentlichte Flutter-Bibliothek, die ich geschrieben habe, weil es zu der Zeit keine richtige Lösung gab. Dem einzigen verfügbaren Paket fehlten zentrale Chat-Funktionen wie Unterstützung für Gruppen, Listengespräche, Tippereignisse und mehr...\n\nDa ich diese Funktionen in Zappr benötigte, beschloss ich, diese Bibliothek zu schreiben, die ein komplettes Toolset für die Entwicklung eines Flutter-Chats bietet.",
+  "portfolio_description": "Zurzeit gibt es kein Backend für dieses Portfolio, aber vielleicht füge ich in Zukunft eine Funktion hinzu, die eine solche erfordert!\n\nBis dahin könnt ihr euch den Code ansehen, wenn ihr neugierig auf einige Animationen seid \uD83D\uDE0A.",
+
+
+  "about_me_short": "Ich bin Jonas, ein Full-Stack-Entwickler für mobile Software.",
+  "about_me_text": "      Ich bin leidenschaftlich bei dem, was ich tue, sehr neugierig und vor allem hartnäckig: Ich habe noch nie aufgegeben, ein Problem zu lösen.\n\n      Außerhalb des Büros können Sie mich beim Brotbacken in meiner Küche oder beim Spielen von Brettspielen antreffen. Ich höre auch gerne von der Leidenschaft anderer Leute, wenn Sie also mit mir teilen oder mich einstellen wollen, schreiben Sie mir eine Nachricht!"
+
+}
