@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:portfolio/resources/keys.dart';
 import 'package:portfolio/resources/strings.dart';
+import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/services/navigation/delegate.dart';
 import 'package:portfolio/services/navigation/pages.dart';
 import 'package:portfolio/services/service_locator.dart';
@@ -17,7 +20,8 @@ class PortfolioCard extends StatefulWidget {
   _PortfolioCardState createState() => _PortfolioCardState();
 }
 
-class _PortfolioCardState extends State<PortfolioCard> with TickerProviderStateMixin {
+class _PortfolioCardState extends State<PortfolioCard>
+    with TickerProviderStateMixin {
   late AnimationController _sizeControllerText;
   late AnimationController _sizeControllerDetails;
 
@@ -28,6 +32,16 @@ class _PortfolioCardState extends State<PortfolioCard> with TickerProviderStateM
   void initState() {
     super.initState();
     setupAnimations();
+    preloadSmiley();
+  }
+
+  /// Because loading smileys the first time will be slow, we preload the ones
+  /// used in our text to avoid any load delays.
+  void preloadSmiley() async {
+    ParagraphBuilder pb =
+        ParagraphBuilder(ParagraphStyle(locale: window.locale));
+    pb.addText('\ud83d\ude0A'); // smiley face emoji
+    pb.build().layout(ParagraphConstraints(width: 100));
   }
 
   /// Setup all animation controllers and animations.
@@ -70,9 +84,8 @@ class _PortfolioCardState extends State<PortfolioCard> with TickerProviderStateM
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        MouseRegion(
-          onEnter: (_) => onHoverEnter(),
-          onExit: (_) => onHoverExit(),
+        Container(
+          height: 300,
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -83,19 +96,24 @@ class _PortfolioCardState extends State<PortfolioCard> with TickerProviderStateM
                     onPressed: onTap,
                     child: Text(AppStrings.view_details.tr())),
               ),
-              ScaleTransition(
-                  scale: _sizeAnimationText,
-                  child: GestureDetector(
-                    onTap: onTap,
-                    child: Padding(
-                      padding: EdgeInsets.all(kIsWeb ? 32 : 0),
-                      child: Text(
-                        "this",
-                        style:
-                            TextStyle(color: Colors.deepOrange, fontSize: 80),
-                      ),
-                    ),
-                  ))
+              MouseRegion(
+                  opaque: false,
+                  onEnter: (_) => onHoverEnter(),
+                  onExit: (_) => onHoverExit(),
+                  child: ScaleTransition(
+                      scale: _sizeAnimationText,
+                      child: GestureDetector(
+                        onTap: onTap,
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Text(
+                            "this",
+                            style: TextStyle(
+                                color: Colors.deepOrange,
+                                fontSize: context.isMobile ? 40 : 80),
+                          ),
+                        ),
+                      )))
             ],
           ),
         ),

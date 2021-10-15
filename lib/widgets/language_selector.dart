@@ -4,8 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/resources/constants.dart';
 import 'package:portfolio/resources/keys.dart';
 import 'package:portfolio/services/locale_manager.dart';
-import 'package:portfolio/services/navigation/delegate.dart';
-import 'package:portfolio/services/navigation/pages.dart';
 import 'package:portfolio/services/service_locator.dart';
 
 /// Allows changing the app languages dynamically using a drop down list.
@@ -47,7 +45,7 @@ class LanguageSelector extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    width: compactDisplay ? 24 : 68,
+                    width: compactDisplay ? 24 : 96,
                     child: Text(compactDisplay
                         ? locale.languageCode.toUpperCase()
                         : localizedLanguages[locale.languageCode]!),

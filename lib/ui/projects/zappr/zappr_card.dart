@@ -30,7 +30,6 @@ class _ZapprCardState extends State<ZapprCard> with TickerProviderStateMixin {
   late Animation<double> _zapprLogoRotationAnimation;
 
   late Animation<Offset> _imagePositionAnimation;
-  late Animation<double> _imageFadeAnimation;
 
   @override
   void initState() {
@@ -51,24 +50,22 @@ class _ZapprCardState extends State<ZapprCard> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: Duration(milliseconds: 400));
 
     _zapprLogoVerticalPositionAnimation =
-        Tween<Offset>(begin: Offset(-5, -10), end: Offset(-5, 0)).animate(
+        Tween<Offset>(begin: Offset(5, -10), end: Offset(5, 0)).animate(
             CurvedAnimation(
                 parent: _zapprLogoVerticalPositionController,
                 curve: Curves.easeIn));
     _zapprLogoHorizontalPositionAnimation =
-        Tween<Offset>(begin: Offset(0, 0), end: Offset(2.9, 0)).animate(
+        Tween<Offset>(begin: Offset(0, 0), end: Offset(-2, 0)).animate(
             CurvedAnimation(
                 parent: _zapprLogoHorizontalPositionController,
                 curve: Curves.linear));
     _zapprLogoRotationAnimation =
-        Tween<double>(begin: 0, end: 1).animate(_zapprLogoRotationController);
+        Tween<double>(begin: 1, end: 0).animate(_zapprLogoRotationController);
 
     _imagePositionAnimation =
-        Tween<Offset>(begin: Offset.zero, end: Offset(-2.0, 0)).animate(
+        Tween<Offset>(begin: Offset.zero, end: Offset(-1.0, 0)).animate(
             CurvedAnimation(
                 parent: _imagePositionController, curve: Curves.decelerate));
-    _imageFadeAnimation =
-        Tween<double>(begin: 1, end: 0).animate(_imagePositionController);
   }
 
   /// Triggered when the mouse enters the project container region. Starts the
@@ -88,7 +85,7 @@ class _ZapprCardState extends State<ZapprCard> with TickerProviderStateMixin {
   /// Triggered when the mouse exits the project container region. Reverses the
   /// appropriate animations.
   void onHoverExit() {
-    _imagePositionController.reverse();
+    _imagePositionController.reverse().then((value) => _zapprLogoVerticalPositionController.reset());
   }
 
   void onTap() => serviceLocator<NavigationService>()
@@ -124,16 +121,14 @@ class _ZapprCardState extends State<ZapprCard> with TickerProviderStateMixin {
               child: Text(AppStrings.view_details.tr())),
           GestureDetector(
             onTap: onTap,
-            child: FadeTransition(
-                opacity: _imageFadeAnimation,
-                child: SlideTransition(
-                  position: _imagePositionAnimation,
-                  child: MobileScreen(
-                      imageAsset: "assets/images/zappr/main.webp",
-                      width: (MediaQuery.of(context).size.width / 3)
-                          .clamp(0, 200)
-                          .toDouble()),
-                )),
+            child: SlideTransition(
+              position: _imagePositionAnimation,
+              child: MobileScreen(
+                  imageAsset: "assets/images/zappr/main.webp",
+                  width: (MediaQuery.of(context).size.width / 3)
+                      .clamp(0, 200)
+                      .toDouble()),
+            ),
           ),
         ],
       ),

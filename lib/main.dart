@@ -1,6 +1,7 @@
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:flutter/foundation.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:portfolio/resources/constants.dart';
 import 'package:portfolio/resources/colors.dart';
@@ -11,6 +12,10 @@ import 'package:portfolio/services/service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Here we set the URL strategy for our web app.
+  // It is safe to call this function when running on mobile or desktop as well.
+  setPathUrlStrategy();
 
   // Setup logging
   if (kReleaseMode) {
@@ -46,16 +51,17 @@ class MyApp extends StatelessWidget {
       serviceLocator<NavigationService>().refreshPages();
     }
 
+
     return MaterialApp.router(
       title: 'Portfolio',
       routerDelegate: serviceLocator<NavigationService>(),
       routeInformationParser: AppRouterInformationParser(),
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(
-          fontFamily: 'Abel',
+          fontFamily: 'IBMPlexMono',
           brightness: Brightness.dark,
-          inputDecorationTheme: InputDecorationTheme()
-              .copyWith(errorStyle: TextStyle().copyWith(fontSize: 18)),
+          inputDecorationTheme: InputDecorationTheme().copyWith(
+              errorStyle: TextStyle().copyWith(fontSize: 18)),
           textTheme: TextTheme().copyWith(
               // Globally used
               bodyText2: TextStyle().copyWith(fontSize: 20),

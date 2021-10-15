@@ -22,45 +22,72 @@ class RootWidget extends StatelessWidget {
   void onPressed(AppPage page) =>
       serviceLocator<NavigationService>().popToTopOrPush(page);
 
+  /// Override font sizes if the screen size is small. We can do this here since
+  /// this widget is share across all screens. Another viable option would be to
+  /// wrap the MaterialApp inside an AnimatedBuilder that listens to a controller.
+  ThemeData getThemeData(BuildContext context) =>
+      context.isMobile
+          ? Theme.of(context).copyWith(
+              inputDecorationTheme: Theme.of(context)
+                  .inputDecorationTheme
+                  .copyWith(
+                      errorStyle: Theme.of(context)
+                          .inputDecorationTheme
+                          .errorStyle!
+                          .copyWith(fontSize: 12)),
+              textTheme: Theme.of(context).textTheme.copyWith(
+                  bodyText2: Theme.of(context)
+                      .textTheme
+                      .bodyText2!
+                      .copyWith(fontSize: 14),
+                  subtitle1: Theme.of(context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(fontSize: 14)))
+          : Theme.of(context);
+
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(
-        mobile: Scaffold(
-          drawer: MainDrawer(),
-          appBar: AppBar(
-            title: Text(serviceLocator<NavigationService>()
-                .currentConfiguration
-                .title
-                .tr()
-                .capitalize()),
-            actions: [LanguageSelector(compactDisplay: true)],
-          ),
-          body: body,
-        ),
-        desktop: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Row(
-              children: [
-                HoverAnimatedButton(
-                    key: Key(AppKeys.about_me_button),
-                    onPressed: () => onPressed(NavigationPage.about()),
-                    child: Text(AppStrings.about_me.tr().capitalize())),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: HoverAnimatedButton(
-                        key: Key(AppKeys.projects_button),
-                        onPressed: () => onPressed(NavigationPage.projects()),
-                        child: Text(AppStrings.projects.tr().capitalize()))),
-                HoverAnimatedButton(
-                    key: Key(AppKeys.contact_button),
-                    onPressed: () => onPressed(NavigationPage.contact()),
-                    child: Text(AppStrings.contact.tr().capitalize())),
-              ],
+    return Theme(
+      data: getThemeData(context),
+      child: ResponsiveLayout(
+          mobile: Scaffold(
+            drawer: MainDrawer(),
+            appBar: AppBar(
+              title: Text(serviceLocator<NavigationService>()
+                  .currentConfiguration
+                  .title
+                  .tr()
+                  .capitalize()),
+              actions: [LanguageSelector(compactDisplay: true)],
             ),
-            actions: [LanguageSelector(compactDisplay: false)],
+            body: body,
           ),
-          body: body,
-        ));
+          desktop: Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              title: Row(
+                children: [
+                  HoverAnimatedButton(
+                      key: Key(AppKeys.about_me_button),
+                      onPressed: () => onPressed(NavigationPage.about()),
+                      child: Text(AppStrings.about_me.tr().capitalize())),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: HoverAnimatedButton(
+                          key: Key(AppKeys.projects_button),
+                          onPressed: () => onPressed(NavigationPage.projects()),
+                          child: Text(AppStrings.projects.tr().capitalize()))),
+                  HoverAnimatedButton(
+                      key: Key(AppKeys.contact_button),
+                      onPressed: () => onPressed(NavigationPage.contact()),
+                      child: Text(AppStrings.contact.tr().capitalize())),
+                ],
+              ),
+              actions: [LanguageSelector(compactDisplay: false)],
+            ),
+            body: body,
+          )),
+    );
   }
 }

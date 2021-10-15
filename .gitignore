@@ -48,3 +48,7 @@ app.*.map.json
 /lib/resources/email_info.dart
 
 /coverage
+
+.firebaserc
+firebase.json
+hosting*

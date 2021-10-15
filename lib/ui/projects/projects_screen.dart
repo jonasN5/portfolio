@@ -14,21 +14,8 @@ class ProjectsScreen extends StatelessWidget {
   final ValueNotifier<bool> _onZapprEnterAnimationEnd =
       ValueNotifier<bool>(false);
 
-  final children = [
-    ProjectCardRoot(
-        enterAnimationDelay: Duration(milliseconds: 300),
-        child: ChatUiKitCard(),
-        labels: [AppStrings.library],
-        title: "Chat Ui Kit"),
-    ProjectCardRoot(
-        enterAnimationDelay: Duration(milliseconds: 600),
-        child: PortfolioCard(),
-        title: "Portfolio")
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final double cardWidth = 600;
     return RootWidget(
         body: SingleChildScrollView(
       child: Column(children: [
@@ -45,30 +32,16 @@ class ProjectsScreen extends StatelessWidget {
                         _onZapprEnterAnimationEnd.value = true);
               }),
         ),
-        Center(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width >= cardWidth * 2
-                ? cardWidth * 2
-                : cardWidth,
-            child: GridView.builder(
-
-                /// Use NeverScrollableScrollPhysics to delegate scrolling to
-                /// SingleChildScrollView.
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1.335,
-                  crossAxisCount:
-                      MediaQuery.of(context).size.width >= cardWidth * 2
-                          ? 2
-                          : 1,
-                ),
-                itemCount: children.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return children[index];
-                }),
-          ),
-        )
+        ProjectCardRoot(
+            runEnterAnimationOnVisibility: true,
+            child: ChatUiKitCard(),
+            labels: [AppStrings.library],
+            title: "Chat Ui Kit"),
+        Container(height: 16),
+        ProjectCardRoot(
+            runEnterAnimationOnVisibility: true,
+            child: PortfolioCard(),
+            title: "Portfolio")
       ]),
     ));
   }

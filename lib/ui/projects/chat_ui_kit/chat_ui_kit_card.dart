@@ -22,7 +22,6 @@ class _ChatUiKitCardState extends State<ChatUiKitCard> with SingleTickerProvider
   late AnimationController _imagePositionController;
 
   late Animation<Offset> _imagePositionAnimation;
-  late Animation<double> _imageFadeAnimation;
 
   @override
   void initState() {
@@ -36,11 +35,9 @@ class _ChatUiKitCardState extends State<ChatUiKitCard> with SingleTickerProvider
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
 
     _imagePositionAnimation =
-        Tween<Offset>(begin: Offset.zero, end: Offset(-2.0, 0)).animate(
+        Tween<Offset>(begin: Offset.zero, end: Offset(-1.0, 0)).animate(
             CurvedAnimation(
                 parent: _imagePositionController, curve: Curves.decelerate));
-    _imageFadeAnimation =
-        Tween<double>(begin: 1, end: 0).animate(_imagePositionController);
   }
 
   /// Triggered when the mouse enters the project container region. Starts the
@@ -72,17 +69,14 @@ class _ChatUiKitCardState extends State<ChatUiKitCard> with SingleTickerProvider
               key: Key(AppKeys.view_details_chat_kit_button),
               onPressed: onTap,
               child: Text(AppStrings.view_details.tr())),
-          FadeTransition(
-            opacity: _imageFadeAnimation,
-            child: SlideTransition(
-                position: _imagePositionAnimation,
-                child: GestureDetector(
-                  onTap: onTap,
-                  child: MobileScreen(
-                      imageAsset: "assets/images/chat_ui_kit/chat_ui_kit_main.webp",
-                      width: (MediaQuery.of(context).size.width/3).clamp(0, 200).toDouble()),
-                )),
-          ),
+          SlideTransition(
+              position: _imagePositionAnimation,
+              child: GestureDetector(
+                onTap: onTap,
+                child: MobileScreen(
+                    imageAsset: "assets/images/chat_ui_kit/chat_ui_kit_main.webp",
+                    width: (MediaQuery.of(context).size.width/3).clamp(0, 200).toDouble()),
+              )),
         ],
       ),
     );

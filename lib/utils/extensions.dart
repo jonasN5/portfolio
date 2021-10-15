@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:portfolio/widgets/responsive_layout.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 extension StringFormatter on String {
@@ -11,4 +13,10 @@ extension StringFormatter on String {
   Future<void> openURL() async => await canLaunch(this)
       ? await launch(this)
       : throw "Could not launch $this";
+}
+
+extension SizeHelper on BuildContext {
+
+  /// Check whether the screen size matches a mobile device.
+  bool get isMobile => MediaQuery.of(this).size.width < kTabletBreakpoint;
 }

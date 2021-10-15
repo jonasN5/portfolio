@@ -6,6 +6,7 @@ import 'package:portfolio/resources/strings.dart';
 import 'package:portfolio/ui/common/root.dart';
 import 'package:portfolio/widgets/fade_in_image.dart';
 import 'package:portfolio/widgets/max_width_container.dart';
+import 'package:portfolio/resources/style.dart';
 
 /// The "about-me" screen.
 class AboutScreen extends StatelessWidget {
@@ -34,13 +35,12 @@ class AboutScreen extends StatelessWidget {
 
                   /// Text
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
+                    padding:
+                        const EdgeInsets.only(bottom: 16, left: 16, right: 16),
                     child: Text(AppStrings.about_me_short.tr(),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize:
-                                Theme.of(context).textTheme.headline5!.fontSize,
-                            fontWeight: FontWeight.bold)),
+                        style: AppStyle.getTitleStyle(context)
+                            .copyWith(fontWeight: FontWeight.bold)),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -51,8 +51,7 @@ class AboutScreen extends StatelessWidget {
                   /// Tech label and images.
                   Padding(
                     padding: const EdgeInsets.only(top: 96, bottom: 16),
-                    child: Text(AppStrings.favorite_techs.tr(),
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: Text(AppStrings.favorite_techs.tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
@@ -62,13 +61,13 @@ class AboutScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SvgPicture.asset('assets/logos/python.svg',
+                              color: Colors.white, height: 32),
+                          SvgPicture.asset('assets/logos/flutter.svg',
+                              color: Colors.white, height: 32),
+                          SvgPicture.asset('assets/logos/android.svg',
                               height: 32),
                           SvgPicture.asset('assets/logos/django.svg',
-                              height: 32),
-                          SvgPicture.asset('assets/logos/flutter.svg',
-                              height: 32),
-                          SvgPicture.asset('assets/logos/android.svg',
-                              height: 32)
+                              color: Colors.white, height: 32),
                         ],
                       ),
                     ),

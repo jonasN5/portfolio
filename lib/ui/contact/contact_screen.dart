@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:portfolio/resources/keys.dart';
 import 'package:portfolio/widgets/max_width_container.dart';
+import 'package:portfolio/widgets/responsive_layout.dart';
 import 'package:progress_state_button/iconed_button.dart';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:portfolio/resources/strings.dart';
@@ -153,7 +154,11 @@ class _ContactScreenState extends State<ContactScreen> {
                     /// Send button
                     Center(
                         child: ProgressButton.icon(
-                            textStyle: TextStyle(fontSize: 20),
+                            textStyle: TextStyle(
+                                fontSize: MediaQuery.of(context).size.width <
+                                        kTabletBreakpoint
+                                    ? 14
+                                    : 20),
                             iconedButtons: {
                               ButtonState.idle: IconedButton(
                                   text: AppStrings.send.tr(),

@@ -81,7 +81,10 @@ class _ChatUiKitProjectScreenState extends State<ChatUiKitProjectScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: MaxWidthContainer(
-                    child: Text(AppStrings.chat_ui_kit_description.tr())),
+                    child: Text(
+                  AppStrings.chat_ui_kit_description.tr(),
+                  textAlign: TextAlign.justify,
+                )),
               ),
               Container(height: 80)
             ],
