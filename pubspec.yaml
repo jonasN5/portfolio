@@ -20,14 +20,14 @@ version: 1.0.0+1
 # Build command: flutter build web --web-renderer canvaskit --release
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
+  sdk: ">=2.14.0"
 
 dependencies:
   flutter:
     sdk: flutter
   fimber: 0.6.1  # Logging
   get_it: 7.2.0  # Service locator
-  easy_localization: 3.0.0  # Localization
+  easy_localization: 3.0.1  # Localization
   functional_widget_annotation: 0.9.0+1  # Make things more readable without losing performance
   intl: ^0.17.0
   flutter_svg: 0.22.0
@@ -38,7 +38,7 @@ dependencies:
   http: ^0.13.4  # Send the email
   progress_state_button: ^1.0.3  # Send button to send the email
   url_strategy: ^0.2.0  # Remove the '#' from the url on the web
-  visibility_detector: ^0.2.0  # Provide a callback when a fraction of the viewport is visible
+  visibility_detector: ^0.3.3   # Provide a callback when a fraction of the viewport is visible
 
 
 
